@@ -3,11 +3,6 @@ alias gcc="gcc-5"
 alias gcc_omp="gcc-5 -std=c99 -O3 -fopenmp"
 alias g++="g++-5"
 
-alias search="ssh a59905@search6.di.uminho.pt"
-alias searchX="ssh -X a59905@search6.di.uminho.pt"
-alias solaris="ssh a59905@193.136.19.187"
-alias solarisX="ssh -X a59905@193.136.19.187"
-
 #Coloring and personalize BASH
 alias ls="ls -G"
 #export GREP_OPTRIONS='--color=always'
