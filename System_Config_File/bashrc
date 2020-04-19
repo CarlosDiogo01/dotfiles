@@ -1,7 +1,7 @@
 #FIXES
-alias gcc="gcc-5"
+#alias gcc="gcc-5"
 alias gcc_omp="gcc-5 -std=c99 -O3 -fopenmp"
-alias g++="g++-5"
+#alias g++="g++-5"
 
 #Coloring and personalize BASH
 alias ls="ls -G"

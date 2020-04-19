@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<!-- saved from url=(0089)https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/ -->
+<html dir="ltr" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/css.css.gzip" media="screen, projection">
+<title>Make Vim as Your Bash-IDE Using bash-support Plugin</title>
+<meta name="description" content="This post is written by SathiyaMoorthy. This article is part of the ongoing Vi / Vim Tips and Tricks Series. As a Linux sysadmin or programmer, you may do">
+<meta name="robots" content="noodp, noydir">
+<link rel="canonical" href="https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/">
+<link rel="alternate" type="application/rss+xml" title="The Geek Stuff feed" href="https://www.thegeekstuff.com/feed/">
+<link rel="pingback" href="https://www.thegeekstuff.com/xmlrpc.php">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="The Geek Stuff » Make Vim as Your Bash-IDE Using bash-support Plugin Comments Feed" href="https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/feed/">
+<link rel="stylesheet" id="wp-block-library-css" href="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/style.min.css.gzip" type="text/css" media="all">
+<link rel="https://api.w.org/" href="https://www.thegeekstuff.com/wp-json/">
+<link rel="alternate" type="application/json+oembed" href="https://www.thegeekstuff.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.thegeekstuff.com%2F2009%2F02%2Fmake-vim-as-your-bash-ide-using-bash-support-plugin%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.thegeekstuff.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.thegeekstuff.com%2F2009%2F02%2Fmake-vim-as-your-bash-ide-using-bash-support-plugin%2F&amp;format=xml">
+<link rel="shortcut icon" href="https://static.thegeekstuff.com/wp-content/uploads/2015/05/favicon.ico.gzip">
+<script src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/cb=gapi.loaded_1" async=""></script><script src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/cb=gapi(1).loaded_0" async=""></script><script type="text/javascript" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/saved_resource"></script><script type="text/javascript" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/inputtools.js"></script><script charset="utf-8" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/button.93a0c25c2d2f3081c705c98c2d9dec0e.js"></script></head>
+<body class="template-single">
+<script type="text/javascript" async="" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/ga.js"></script><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-5302569-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<div class="container">
+	<div id="header" class="header">
+		<p id="logo"><a href="https://www.thegeekstuff.com/"><img src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/thegeekstuff.gif" alt="The Geek Stuff"></a>
+</p><div id="header_ad"><div id="header_ad1">
+<script async="" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/f.txt"></script>
+<!-- TGS Logo Header -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-8090601437064582" data-ad-slot="4708993701"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div></div>
+	</div>
+<span class="menu_control">≡ Menu</span>
+<ul id="menu-tgs-menu" class="menu"><li id="menu-item-15798" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-15798"><a href="https://www.thegeekstuff.com/">Home</a></li>
+<li id="menu-item-15797" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15797"><a href="https://www.thegeekstuff.com/linux-101-hacks-ebook/">Free eBook</a></li>
+<li id="menu-item-15805" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15805"><a href="https://www.thegeekstuff.com/best-of-the-blog/">Start Here</a></li>
+<li id="menu-item-15800" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15800"><a href="https://www.thegeekstuff.com/contact/">Contact</a></li>
+<li id="menu-item-15802" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-15802"><a href="https://www.thegeekstuff.com/about/">About</a></li>
+</ul>
+<div class="columns">
+	<div class="content">
+		<div id="post-385" class="post_box grt top" itemscope="" itemtype="http://schema.org/Article">
+			<div class="headline_area">
+				<h1 class="headline" itemprop="name">Make Vim as Your Bash-IDE Using bash-support Plugin</h1>
+<div class="byline small">
+	<span class="post_author_intro">by</span> <span class="post_author">Ramesh Natarajan</span>
+<span class="post_date_intro">on</span> <span class="post_date" title="2009-02-19">February 19, 2009</span>
+</div>
+			</div>
+<div class="post_content">
+<div style="margin:7px 0px 6px 0px; padding:5px;">
+
+<div style="float:left; width=95px">
+<div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1587306016467" name="I0_1587306016467" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/fastbutton.html" data-gapiattached="true"></iframe></div><g:plusone size="medium" data-gapiscan="true" data-onload="true" data-gapistub="true"></g:plusone>
+</div>
+
+<div style="float:left; padding:2px; width:90px"><iframe src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/like.html" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowtransparency="true"></iframe>
+</div>
+
+<div style="width=95px">
+<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 60px; height: 20px;" title="Twitter Tweet Button" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/tweet_button.6787510241df65d128e2b60207ad4c25.en.html"></iframe><script type="text/javascript" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/widgets.js"></script>
+</div>
+
+</div>
+<p><img class="alignright alignnone size-full wp-image-393" style="float: right;" title="Vim Bash IDE Plugin" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/vim-bash.jpg" alt="Vim Bash IDE Plugin" width="300" height="200"><em>This post is written by SathiyaMoorthy.</em><br>
+<code> </code><br>
+This article is part of the ongoing <a href="https://www.thegeekstuff.com/tag/vi-vim-tips-and-tricks/">Vi / Vim Tips and Tricks</a> Series. As a Linux sysadmin or programmer, you may do following repetitive tasks while coding bash shell script:</p>
+<ul>
+<li> Adding file header</li>
+<li> Adding function/frame comment</li>
+<li> Including default code snippet</li>
+<li> Performing syntax check</li>
+<li> Reading documentation about a function</li>
+<li> Converting a code block to comment, and vice versa</li>
+</ul>
+<p><code> </code><br>
+The bash-Support Vim plugin offers easiest way to do all of the above, saving lot of time and keystrokes.<br>
+<span id="more-385"></span><br>
+The plugin was written by Fritz Mehner, who explains the purpose of the plugin as: “Write and run BASH-scripts using menus and hotkeys.”<br>
+<code> </code><br>
+This article explains how to install the plugin in 3 easy steps and 8 powerful features of the plugin.</p>
+<h2>3 Steps to Install the bash-support plugin</h2>
+<h3>Step 1: Download the bash-support plugin</h3>
+<p>Download the plugin from <a href="http://www.vim.org/scripts/script.php?script_id=365">vim.org</a> website.<br>
+<code> </code></p>
+<pre>$ cd /usr/src
+$ wget -O bash-support.zip http://www.vim.org/scripts/download_script.php?src_id=9890</pre>
+<h3>Step 2: Install the bash-support Vim Plugin</h3>
+<pre>$ mkdir ~/.vim # if the directory does not exist already
+$ cd ~/.vim
+$ unzip /usr/src/bash-support.zip</pre>
+<h3>Step 3: Enable the plugin in the ~/.vimrc</h3>
+<p>Add the following line to the ~/.vimrc to enable the plugin for Vim editor.</p>
+<pre>$ vim ~/.vimrc
+filetype plugin on</pre>
+<h2>8 Powerful Features of Bash Vim Plugin</h2>
+<h3>Feature 1: Add Automatic Header to *.sh file</h3>
+<p>When you open a file with the extension .sh it opens the file with header as shown below. This will also place the cursor in the Description field in Insert mode.</p>
+<pre>#!/bin/bash
+#============================================================
+#
+#          FILE:  myscript.sh
+#
+#         USAGE:  ./myscript.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS:  ---
+#  REQUIREMENTS:  ---
+#          BUGS:  ---
+#         NOTES:  ---
+#        AUTHOR:   (),
+#       COMPANY:
+#       VERSION:  1.0
+#       CREATED:  02/14/09 15:42:08 IST
+#      REVISION:  ---
+#============================================================</pre>
+<p><code> </code><br>
+To change the default value of the AUTHOR and COMPANY, add the following lines in ~/.vimrc</p>
+<pre>let g:BASH_AuthorName   = 'SathiyaMoorthy'
+let g:BASH_Email        = 'subscribe@thegeekstuff.com'
+let g:BASH_Company      = 'Open Source Corporation'</pre>
+<p><code> </code><br>
+Now, when you create a new bash script file, it will show the modified values for AUTHOR and COMPANY as shown below.</p>
+    <center>
+      <div style="margin-left:2px; margin-top:10px; margin-bottom:10px; ">
+
+        <!-- AD BLOCK -->
+		
+<script async="" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/f.txt"></script>
+<!-- TGS Inside Content -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-8090601437064582" data-ad-slot="8643685131"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+        <!-- END AD BLOCK -->
+
+	  </div>
+    </center>
+
+
+<pre>#!/bin/bash
+#============================================================
+#
+#          FILE:  myscript.sh
+#
+#         USAGE:  ./myscript.sh
+#
+#   DESCRIPTION:
+#
+#       OPTIONS:  ---
+#  REQUIREMENTS:  ---
+#          BUGS:  ---
+#         NOTES:  ---
+#        AUTHOR:  SathiyaMoorthy (), subscribe@thegeekstuff.com
+#       COMPANY:  Open Source Corporation
+#       VERSION:  1.0
+#       CREATED:  02/14/09 15:39:58 IST
+#      REVISION:  ---
+#============================================================</pre>
+<p><code> </code><br>
+<strong>Note:</strong> To add custom fields to the header, modify the ~/.vim/perl-support/templates/bash-file-header file and add your own custom field.</p>
+<h3>Feature 2: Adding Bash Function Using \sfu</h3>
+<p>For writing a subroutine, type \sfu in normal mode, which will prompt for the function name (as shown in Fig1 below) and inserts the subroutine with default function content (as shown in Fig2 below).<br>
+<code> </code></p>
+<p style="text-align: center;"><img class="size-full wp-image-386 aligncenter" title="Vim Bash Plugin - Insert Function Header" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/vim-bash-plugin-1.gif" alt="Vim Bash Plugin - Insert Function Header" width="438" height="548" srcset="https://static.thegeekstuff.com/wp-content/uploads/2009/02/vim-bash-plugin-1.gif 438w, https://www.thegeekstuff.com/wp-content/uploads/2009/02/vim-bash-plugin-1-239x300.gif 239w" sizes="(max-width: 438px) 100vw, 438px"></p>
+<p style="text-align: center;"><strong>Fig 1:</strong> Type \sfu to add a bash function inside a shell script</p>
+<p><code> </code></p>
+<p style="text-align: center;"><img class="size-full wp-image-387 aligncenter" title="Vim Bash Plugin - Bash function added" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/vim-bash-plugin-2.gif" alt="Vim Bash Plugin - Bash function added" width="500" height="530" srcset="https://static.thegeekstuff.com/wp-content/uploads/2009/02/vim-bash-plugin-2.gif 510w, https://www.thegeekstuff.com/wp-content/uploads/2009/02/vim-bash-plugin-2-282x300.gif 282w" sizes="(max-width: 500px) 100vw, 500px"></p>
+<p style="text-align: center;"><strong>Fig 2:</strong> Bash function added automatically inside shell script</p>
+<h3>Feature 3: Insert a Function Header Using \cfu</h3>
+<p>For inserting a function header, type \cfu in normal mode, which shows comments as shown in Fig 3.</p>
+<p style="text-align: center;">
+</p><p style="text-align: center;"><img class="size-full wp-image-388 aligncenter" title="Vim Bash Plugin - Insert Function Header" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/vim-bash-plugin-3.gif" alt="Vim Bash Plugin - Insert Function Header" width="499" height="217" srcset="https://static.thegeekstuff.com/wp-content/uploads/2009/02/vim-bash-plugin-3.gif 608w, https://www.thegeekstuff.com/wp-content/uploads/2009/02/vim-bash-plugin-3-300x130.gif 300w" sizes="(max-width: 499px) 100vw, 499px"></p>
+<p style="text-align: center;"><strong>Fig 3:</strong> Type \cfu to insert a function header inside a shell script</p>
+<h3>Feature 4: Add a Frame Comment Using \cfr</h3>
+<p>To add a frame comment, type \cfr in normal mode, which will give the following formatted comment as shown in Figure 4.</p>
+<p style="text-align: center;"><img class="size-full wp-image-389 aligncenter" title="Vim Bash Plugin - Insert a Frame Comment" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/vim-bash-plugin-4.gif" alt="Vim Bash Plugin - Insert a Frame Comment" width="500" height="260" srcset="https://static.thegeekstuff.com/wp-content/uploads/2009/02/vim-bash-plugin-4.gif 509w, https://www.thegeekstuff.com/wp-content/uploads/2009/02/vim-bash-plugin-4-300x156.gif 300w" sizes="(max-width: 500px) 100vw, 500px"></p>
+<p style="text-align: center;"><strong>Fig 4:</strong> Type \cfr to insert a frame comment inside a shell script</p>
+<h3>Feature 5: Insert Bash Statements Inside Shell Script</h3>
+<p>Short cut keys to insert statements are:</p>
+<ul>
+<li><strong> \sc</strong> case in … esac</li>
+<li><strong>\sl</strong> elif then</li>
+<li><strong>\sf</strong> for in do done</li>
+<li><strong>\sfo</strong> for ((…)) do done</li>
+<li><strong>\si</strong> if then fi</li>
+<li><strong>\sie</strong> if then else fi</li>
+<li><strong>\ss</strong> select in do done</li>
+<li><strong>\st</strong> until do done</li>
+<li><strong>\sw</strong> while do done</li>
+<li><strong>\sfu</strong> function</li>
+<li><strong>\se</strong> echo ­e “\n”</li>
+<li><strong>\sp</strong> printf “\n”</li>
+</ul>
+<h3>Example: Insert the Case Statement inside a shell script automatically</h3>
+<p>\sc will insert the case statements and places the cursor next to the case statement in INSERT mode as shown in figure 5. Like this you can use all the mentioned short cut keystrokes to get the appropriate statement in the table 1.</p>
+<p style="text-align: center;"><img class="size-full wp-image-390 aligncenter" title="Vim Bash Plugin - Insert Case Statement" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/vim-bash-plugin-5.gif" alt="Vim Bash Plugin - Insert Case Statement" width="420" height="366" srcset="https://static.thegeekstuff.com/wp-content/uploads/2009/02/vim-bash-plugin-5.gif 420w, https://www.thegeekstuff.com/wp-content/uploads/2009/02/vim-bash-plugin-5-300x261.gif 300w" sizes="(max-width: 420px) 100vw, 420px"></p>
+<p style="text-align: center;"><strong>Fig 5:</strong> Type \sc to insert case statement inside bash shell script</p>
+<h3>Feature 6: Insert Predefined code-snippet to the Bash Script Using \nr</h3>
+<p>Code snippets can be read / written by using \nr and \nw respectively. The plugin comes with few pre-defined code snippets that you can insert into your code. Following are the default code snippets that comes with the plugin.</p>
+<pre>$ ls -1 ~/.vim/bash-support/codesnippets/
+assert
+basename+pathname
+basename-function
+check-number-of-command-line-arguments
+create-tempfile
+create-tempfile-with-trap
+free-software-comment
+read-and-split-into-array
+timestamp
+usage-and-command-line-arguments.noindent
+use-file-descriptor-read
+use-file-descriptor-write
+well-behaved-script</pre>
+<p><code> </code><br>
+To include the check-number-of-command-line-arguments code snippet, press \nr and you will be prompted for a file name. Give the file name as check-number-of-command-line-arguments and the following code will be automatically inserted to the shell-script.</p>
+<pre>#-----------------------------------------------------------------------
+#  Check number of command line arguments
+#-----------------------------------------------------------------------
+if [ $# -lt 1 ]
+then
+echo -e "\n\tUsage:  ${0##/*/} File\n"
+exit 1
+fi</pre>
+<p><code> </code><br>
+<strong>Note:</strong> You can define your own code snippets and place it under ~/.vim/bash-support/codesnippets/. You can also build your own code snippets from the existing code – select the part of code need to be made as code snippet, press \nw, and give a file-name to it. From next time, type \nr and the file-name to get your custom code snippet.</p>
+<h3>Feature 7: Get Quick Help on the Bash Builtin Commands</h3>
+<p>When you need to read help page for the bash builtins use \hh when the cursor is in the word.<br>
+<code> </code><br>
+In the following example (Fig 6), the read bash builtin command is selected and \hh is typed, which displayed the quick-help on the read command. Use the same method to get quick-help on all bash builtin commands.<br>
+<code> </code></p>
+<p style="text-align: center;"><a href="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/vim-bash-plugin-7.gif"><img class="size-full wp-image-391 aligncenter" title="Vim Bash Plugin - Get Help about Bash Builtin" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/vim-bash-plugin-7.gif" alt="Vim Bash Plugin - Get Help about Bash Builtin" width="500" height="383" srcset="https://static.thegeekstuff.com/wp-content/uploads/2009/02/vim-bash-plugin-7.gif 813w, https://www.thegeekstuff.com/wp-content/uploads/2009/02/vim-bash-plugin-7-300x230.gif 300w" sizes="(max-width: 500px) 100vw, 500px"></a></p>
+<p style="text-align: center;"><strong>Fig 6:</strong> Type \hh to get help about the selected bash builtin command</p>
+<h3>Feature 8: Featured Commenting</h3>
+<p>Following commands will add the corresponding keyword comments. For example, type \ckb to add the BUG comment line inside shell-script.</p>
+<ul>
+<li><strong>\ckb</strong> Keyword BUG</li>
+<li><strong>\ckt</strong> Keyword TODO</li>
+<li><strong>\ckr</strong> Keyword Tricky</li>
+<li><strong>\ckw</strong> Keyword WARNING</li>
+</ul>
+<p><code> </code><br>
+Type \ckt to add a comment line with the keyword “# :TODO: mm/dd/yy:: “. This is basically a comment line that acts as a TODO, where you can type the items that you would like to get it done later.</p>
+<p style="text-align: center;"><img class="size-full wp-image-392 aligncenter" title="Vim Bash Plugin - Add TODO" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/vim-bash-plugin-8.gif" alt="Vim Bash Plugin - Add TODO inside shell script" width="450" height="350" srcset="https://static.thegeekstuff.com/wp-content/uploads/2009/02/vim-bash-plugin-8.gif 450w, https://www.thegeekstuff.com/wp-content/uploads/2009/02/vim-bash-plugin-8-300x233.gif 300w" sizes="(max-width: 450px) 100vw, 450px"></p>
+<p style="text-align: center;"><strong>Fig 7:</strong> Type \ckt to add TODO inside bash shell script</p>
+<p><code> </code><br>
+There are lot of powerful features in the bash-support Plugin. Read the documentation for more information. The documentation is located in the following location on your system.</p>
+<ul>
+<li>README : ~/.vim/README.bashsupport</li>
+<li>PDF : ~/.vim/bash-support/doc/bash-hot-keys.pdf</li>
+<li><a href="http://lug.fh-swf.de/vim/vim-doc/bashsupport.html">Online bash-support vim plugin documentation</a></li>
+<li>This plugin comes with a help file (bashsupport.txt) which can be viewed by :h bashsupport</li>
+<li>[ Generate the help tags by &nbsp;:helptags ~/.vim/doc, and then issue :h bashsupport ]</li>
+<li><a href="http://lug.fh-swf.de/vim/vim-bash/screenshots-en.html">Additional Screenshots of this plug-in</a>.</li>
+</ul>
+<p><code> </code></p>
+<h3>Recommended Reading</h3>
+<p><a rel="nofollow" href="https://www.thegeekstuff.com/vim-101-hacks-ebook/"><img class="frame alignright size-full wp-image-2394" title="Vim 101 Hacks eBook" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/vim-101-hacks-125x125.png" alt="" width="125" height="125"></a><strong><a rel="nofollow" href="https://www.thegeekstuff.com/vim-101-hacks-ebook/">Vim 101 Hacks</a>, by Ramesh Natarajan</strong>. I’m a command-line junkie. So, naturally I’m a huge fan of Vi and Vim editors. Several years back, when I wrote lot of C code on Linux, I used to read all available Vim editor tips and tricks. Based on my Vim editor experience, I’ve written Vim 101 Hacks eBook that contains 101 practical examples on various advanced Vim features that will make you fast and productive in the Vim editor. Even if you’ve been using Vi and Vim Editors for several years and have not read this book, please do yourself a favor and read this book. You’ll be amazed with the capabilities of Vim editor.</p>
+<div style="margin:7px 0px 3px 0px; padding:5px; background:#F2F0E8">
+
+<div style="float:left; width=95px">
+<div id="___plusone_1" style="position: absolute; width: 450px; left: -10000px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I1_1587306016506" name="I1_1587306016506" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/fastbutton(1).html" data-gapiattached="true"></iframe></div><g:plusone size="medium" data-gapiscan="true" data-onload="true" data-gapistub="true"></g:plusone>
+</div>
+
+<div style="float:left; width=95px">
+<iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 60px; height: 20px;" title="Twitter Tweet Button" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/tweet_button.6787510241df65d128e2b60207ad4c25.en(1).html"></iframe><script type="text/javascript" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/widgets.js"></script>
+</div>
+
+<div style="float:left; padding:2px; width:90px"><iframe src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/like(1).html" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowtransparency="true"></iframe>
+</div>
+
+<div style="padding:1px">
+&gt;&nbsp;<a href="https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/#commentform" rel="nofollow">Add your comment</a>
+</div>
+
+</div>
+<h3>If you enjoyed this article, you might also like..</h3>
+<table>
+<tbody><tr>
+<td valign="top">
+<ol>
+<li><a href="https://www.thegeekstuff.com/2010/12/50-unix-linux-sysadmin-tutorials/">50 Linux Sysadmin Tutorials</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/11/50-linux-commands/">50 Most Frequently Used Linux Commands (With Examples)</a></li>
+<li><a href="https://www.thegeekstuff.com/2011/12/linux-performance-monitoring-tools/">Top 25 Best Linux Performance Monitoring and Debugging Tools</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/03/15-practical-linux-find-command-examples/">Mommy, I found it! – 15 Practical Linux Find Command Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/linux-101-hacks-ebook/">Linux 101 Hacks 2nd Edition eBook</a>&nbsp;<img title="Linux 101 Hacks Book" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/free-small.png" alt="Linux 101 Hacks Book"></li>
+</ol>
+</td>
+<td>
+<ul>
+<li><a href="https://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-7-awk-print-examples/">Awk Introduction – 7 Awk Print Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/10/unix-sed-tutorial-advanced-sed-substitution-examples/">Advanced Sed Substitution Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/03/8-essential-vim-editor-navigation-fundamentals/">8 Essential Vim Editor Navigation Fundamentals</a></li>
+<li><a href="https://www.thegeekstuff.com/2011/06/iptables-rules-examples/">25 Most Frequently Used Linux IPTables Rules Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2008/08/turbocharge-putty-with-12-powerful-add-ons-software-for-geeks-3/">Turbocharge PuTTY with 12 Powerful Add-Ons</a></li>
+</ul>
+</td>
+</tr>
+</tbody></table>
+<br>
+<center>
+<table id="booktable">
+<tbody><tr>
+<td>
+<a rel="nofollow" href="https://www.thegeekstuff.com/bash-101-hacks-ebook/"><img title="Bash 101 Hacks Book" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/bash-132.png" alt="Bash 101 Hacks Book"></a>
+</td>
+<td>
+<a rel="nofollow" href="https://www.thegeekstuff.com/sed-awk-101-hacks-ebook/"><img title="Sed and Awk 101 Hacks Book" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/sed-and-awk-132.png" alt="Sed and Awk 101 Hacks Book"></a>
+</td>
+<td>
+<a rel="nofollow" href="https://www.thegeekstuff.com/nagios-core-ebook/"><img title="Nagios Core 3 Book" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/nagios-core-132.png" alt="Nagios Core 3 Book"></a>
+</td>
+<td>
+<a rel="nofollow" href="https://www.thegeekstuff.com/vim-101-hacks-ebook/"><img title="Vim 101 Hacks Book" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/vim-101-hacks-132.png" alt="Vim 101 Hacks Book"></a>
+</td>
+</tr>
+</tbody></table>
+</center>
+<br>
+</div>
+<p class="post_tags">
+	<span class="post_tags_intro">Tagged as:</span>
+	<a href="https://www.thegeekstuff.com/tag/vimrc/" rel="tag">~/.vimrc</a>,
+	<a href="https://www.thegeekstuff.com/tag/bash-code-snippets/" rel="tag">Bash Code Snippets</a>,
+	<a href="https://www.thegeekstuff.com/tag/bash-functions/" rel="tag">Bash Functions</a>,
+	<a href="https://www.thegeekstuff.com/tag/bash-ide/" rel="tag">Bash IDE</a>,
+	<a href="https://www.thegeekstuff.com/tag/bash-shell-script-ide/" rel="tag">Bash Shell Script IDE</a>,
+	<a href="https://www.thegeekstuff.com/tag/bash-supportvim-plugin/" rel="tag">bash-support.vim plugin</a>,
+	<a href="https://www.thegeekstuff.com/tag/vi-tips/" rel="tag">vi tips</a>,
+	<a href="https://www.thegeekstuff.com/tag/vi-vim-tips-and-tricks/" rel="tag">Vi Vim Tips and Tricks</a>,
+	<a href="https://www.thegeekstuff.com/tag/vim-plugins/" rel="tag">Vim Plugins</a>,
+	<a href="https://www.thegeekstuff.com/tag/vim-tips/" rel="tag">vim tips</a>,
+	<a href="https://www.thegeekstuff.com/tag/vim-tips-and-tricks/" rel="tag">Vim Tips and Tricks</a>
+</p>
+		</div>
+<div id="comments">
+	<p class="comments_intro"><span class="bracket">{</span> <span class="num_comments">6</span> comments… <a href="https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/#commentform" rel="nofollow">add one</a> <span class="bracket">}</span></p>
+<ul class="comment_list">
+	<li class="comment even thread-even depth-1" id="comment-6131">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">BG</span>
+<span class="comment_date">February 20, 2009, 2:00 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-6131"><p>Great tutorial! Thanks a lot!<br>
+I recommend <a href="http://www.vim.org/scripts/script.php?script_id=563" rel="nofollow">http://www.vim.org/scripts/script.php?script_id=563</a> which allow keep a backup version in Revision Control System (RCS) whenever you save a file.</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/#comment-6131" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-11991">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">rakesh uv</span>
+<span class="comment_date">June 26, 2009, 11:10 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-11991"><p>Hi,<br>
+             good article, there is typo error here<br>
+“Note: To add custom fields to the header, modify the ~/.vim/perl-support<br>
+/templates/bash-file-header file and add your own custom field.”</p>
+<p>the path to the template file should contain bash-support instead of perl-support</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/#comment-11991" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-24376">
+		<div class="comment_head">
+			<span class="avatar"><a href="http://www.clustergate.ru/" rel="nofollow"></a></span>
+<span class="comment_author"><a href="http://www.clustergate.ru/" rel="external nofollow ugc" class="url">Andrey</a></span>
+<span class="comment_date">December 1, 2009, 3:12 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-24376"><p>Hi, I just tried the plugin. It looks not bad.</p>
+<p>I would recommend to add in the comment region (AUTHOR, script name, etc) the field<br>
+with current directory name (where new script is) and host name (where new script is developed).</p>
+<p>Nest regards,</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/#comment-24376" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-745822">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">raju</span>
+<span class="comment_date">May 14, 2013, 10:03 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-745822"><p>Is there something similar for tcsh?</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/#comment-745822" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="comment-4411672">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">Rui Ramos</span>
+<span class="comment_date">August 19, 2015, 7:30 am</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4411672"><p>2009?<br>
+Please update!<br>
+” Set at least some personal details in the file<br>
+(1.3) ‘$HOME/.vim/bash-support/templates/Templates’ ”<br>
+That how its done this days;-)</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/#comment-4411672" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4807273">
+		<div class="comment_head">
+			<span class="avatar"></span>
+<span class="comment_author">David Kenner</span>
+<span class="comment_date">May 16, 2016, 1:04 pm</span>
+		</div>
+<div class="comment_text grt" id="comment-body-4807273"><p>I was not able to get it work after this point:<br>
+To change the default value of the AUTHOR and COMPANY, add the following lines in ~/.vimrc<br>
+Any ideas? I can’t get the menus to show either. Please help</p>
+</div>
+<div class="comment_footer">
+<a class="comment_permalink" href="https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/#comment-4807273" title="permalink to this comment" rel="nofollow">Link</a>
+</div>
+</li><!-- #comment-## -->
+</ul>
+<form id="commentform" method="post" action="https://www.thegeekstuff.com/wp-comments-post.php">
+	<a rel="nofollow" id="cancel-comment-reply-link" href="https://www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/#respond" style="display:none;">Cancel reply</a>
+<p class="comment_form_title">Leave a Comment</p>
+<p id="comment_form_name">
+	<label for="author">Name</label>
+	<input type="text" id="author" class="input_text" name="author" value="" tabindex="1">
+</p>
+<p id="comment_form_email">
+	<label for="email">Email</label>
+	<input type="text" id="email" class="input_text" name="email" value="" tabindex="2">
+</p>
+<p id="comment_form_url">
+	<label for="url">Website</label>
+	<input type="text" id="url" class="input_text" name="url" value="" tabindex="3">
+</p>
+<p id="comment_form_comment">
+	<label for="comment">Comment</label>
+	<textarea name="comment" id="comment" class="input_text" tabindex="4" rows="6"></textarea>
+</p>
+<p id="comment_form_submit">
+	<input type="submit" id="submit" class="input_submit" name="submit" tabindex="5" value="Submit">
+</p>
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="01bf42b04f"></p>
+
+	<p style="clear: both;" class="subscribe-to-comments">
+	<input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;">
+	<label for="subscribe">Notify me of followup comments via e-mail</label>
+	</p>
+
+
+<p style="display: none;"></p><input type="hidden" name="comment_post_ID" value="385" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+<input type="hidden" id="ak_js" name="ak_js" value="1587306016583"></form>
+</div>
+<div class="prev_next">
+	<p class="next_post">Next post: <a href="https://www.thegeekstuff.com/2009/02/7-powerful-firefox-bookmark-add-ons-to-enhance-your-browsing-experience/" rel="next">7 Powerful Firefox Bookmark Add-ons To Enhance Your Browsing Experience</a></p>
+<p class="previous_post">Previous post: <a href="https://www.thegeekstuff.com/2009/02/nbd-tutorial-network-block-device-jumpstart-guide/" rel="prev">Linux NBD Tutorial: Network Block Device Jumpstart Guide</a></p>
+</div>
+	</div>
+<div class="sidebar">
+<div class="widget widget_text" id="text-21">			<div class="textwidget"><a title="Subscribe via RSS" href="https://www.thegeekstuff.com/feed" rel="nofollow">RSS</a>&nbsp; | &nbsp;<a title="Subscribe via Email" href="https://feedburner.google.com/fb/a/mailverify?uri=TheGeekStuff&amp;loc=en_US" rel="nofollow">Email</a>&nbsp; | &nbsp;<a title="Follow us on Twitter" href="https://twitter.com/thegeekstuff" rel="nofollow">Twitter</a>&nbsp; | &nbsp;<a title="Become a fan" href="https://www.facebook.com/thegeekstuff" rel="nofollow">Facebook</a>&nbsp; | &nbsp;<a title="Follow us on Google+" href="https://plus.google.com/112493711428194838421/posts">Google+</a>
+<br><br>
+<form action="https://www.thegeekstuff.com/search" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="005666763606120661560:zkmegbt_djm">
+    <input type="hidden" name="cof" value="FORID:10">
+    <input type="hidden" name="ie" value="UTF-8">
+    <input style="background: url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) left center no-repeat rgb(255, 255, 255); text-indent: 48px;" type="text" name="q" size="30" placeholder="Custom Search">
+    <input style="border-color:#CCCCCC #999999 #999999 #CCCCCC; border-style:double; border-width:1px; overflow:visible;" type="submit" name="sa" value="Search">
+  </div>
+<input name="siteurl" type="hidden" value="www.thegeekstuff.com/2009/02/make-vim-as-your-bash-ide-using-bash-support-plugin/"><input name="ref" type="hidden" value="duckduckgo.com/"><input name="ss" type="hidden" value=""></form>
+<script type="text/javascript" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/jsapi"></script>
+<script type="text/javascript">google.load("elements", "1", {packages: "transliteration"});</script><script src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/saved_resource(1)" type="text/javascript"></script><link href="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/transliteration.css" type="text/css" rel="stylesheet"><script src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/transliteration.I.js" type="text/javascript"></script>
+<script type="text/javascript" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/f(1).txt"></script>
+<script type="text/javascript" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/f(2).txt"></script>
+<br></div>
+		</div><div class="widget widget_text" id="text-3">			<div class="textwidget"><script async="" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/f.txt"></script>
+<!-- TGS Side Bar -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-8090601437064582" data-ad-slot="9054077260"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<br></div>
+		</div><div class="widget widget_text" id="text-4"><p class="widget_title">EBOOKS</p>			<div class="textwidget"><ul>
+<li><img title="Linux 101 Hacks Book" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/free-small.png" alt="Linux 101 Hacks Book">&nbsp;<a href="https://www.thegeekstuff.com/linux-101-hacks-ebook/">Linux 101 Hacks 2nd Edition eBook</a> - Practical Examples to Build a Strong Foundation in Linux</li>
+<li><a href="https://www.thegeekstuff.com/bash-101-hacks-ebook/">Bash 101 Hacks eBook</a> - Take Control of Your Bash Command Line and Shell Scripting</li>
+<li><a href="https://www.thegeekstuff.com/sed-awk-101-hacks-ebook/">Sed and Awk 101 Hacks eBook</a> - Enhance Your UNIX / Linux Life with Sed and Awk</li>
+<li><a href="https://www.thegeekstuff.com/vim-101-hacks-ebook/">Vim 101 Hacks eBook</a> - Practical Examples for Becoming Fast and Productive in Vim Editor</li>
+<li><a href="https://www.thegeekstuff.com/nagios-core-ebook/">Nagios Core 3 eBook</a> - Monitor Everything, Be Proactive, and Sleep Well</li>
+</ul></div>
+		</div><div class="widget widget_text" id="text-22">			<div class="textwidget"><iframe src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/likebox.html" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:258px;" allowtransparency="true"></iframe></div>
+		</div><div class="widget widget_text" id="text-17"><p class="widget_title">POPULAR POSTS</p>			<div class="textwidget"><ul>
+<li><a href="https://www.thegeekstuff.com/dslr-accessories/">15 Essential Accessories for Your Nikon or Canon DSLR Camera</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/01/12-amazing-and-essential-linux-books-to-enrich-your-brain-and-library/">12 Amazing and Essential Linux Books To Enrich Your Brain and Library</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/12/50-unix-linux-sysadmin-tutorials/">50 UNIX / Linux Sysadmin Tutorials</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/11/50-linux-commands/">50 Most Frequently Used UNIX / Linux Commands (With Examples)</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/08/gtd-getting-things-done/">How To Be Productive and Get Things Done Using GTD</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/03/30-things-to-do-when-you-are-bored-and-have-a-computer/">30 Things To Do When you are Bored and have a Computer</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/09/linux-file-system-structure/">Linux Directory Structure (File System Structure) Explained with Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/06/15-practical-crontab-examples/">Linux Crontab: 15 Awesome Cron Job Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/03/15-practical-unix-grep-command-examples/">Get a Grip on the Grep! – 15 Practical Grep Command Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/07/linux-ls-command-examples/">Unix LS Command: 15 Practical Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2008/08/15-examples-to-master-linux-command-line-history/">15 Examples To Master Linux Command Line History</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/08/bug-tracking-system/">Top 10 Open Source Bug Tracking System</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/01/vi-and-vim-macro-tutorial-how-to-record-and-play/">Vi and Vim Macro Tutorial: How To Record and Play</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/03/15-practical-linux-find-command-examples/">Mommy, I found it! -- 15 Practical Linux Find Command Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/07/best-gmail-tips-and-tricks/">15 Awesome Gmail Tips and Tricks</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/06/expertise-in-google-search/">15 Awesome Google Search Tips and Tricks</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/08/raid-levels-tutorial/">RAID 0, RAID 1, RAID 5, RAID 10 Explained with Diagrams</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/01/15-practical-unix-linux-top-command-examples/">Can You Top This? 15 Practical Linux Top Command Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/09/top-5-best-network-monitoring-tools/">Top 5 Best System Monitoring Tools</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/06/top-5-best-linux-os-distributions/">Top 5 Best Linux OS Distributions</a></li>
+<li><a href="https://www.thegeekstuff.com/2008/06/how-to-monitor-remote-linux-host-using-nagios-30/">How To Monitor Remote Linux Host using Nagios 3.0</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/01/awk-introduction-tutorial-7-awk-print-examples/">Awk Introduction Tutorial – 7 Awk Print Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/09/rsync-command-examples/">How to Backup Linux? 15 rsync Command Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/09/the-ultimate-wget-download-guide-with-15-awesome-examples/">The Ultimate Wget Download Guide With 15 Awesome Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/07/top-5-best-linux-text-editors/">Top 5 Best Linux Text Editors</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/08/tcpdump-command-examples/">Packet Analyzer: 15 TCPDUMP Command Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/06/bash-array-tutorial/">The Ultimate Bash Array Tutorial with 15 Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2008/11/3-steps-to-perform-ssh-login-without-password-using-ssh-keygen-ssh-copy-id/">3 Steps to Perform SSH Login Without Password Using ssh-keygen &amp; ssh-copy-id</a></li>
+<li><a href="https://www.thegeekstuff.com/2009/10/unix-sed-tutorial-advanced-sed-substitution-examples/">Unix Sed Tutorial: Advanced Sed Substitution Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2010/03/netstat-command-examples/">UNIX / Linux: 10 Netstat Command Examples</a></li>
+<li><a href="https://www.thegeekstuff.com/2008/06/the-ultimate-guide-for-creating-strong-passwords/">The Ultimate Guide for Creating Strong Passwords</a></li>
+<li><a href="https://www.thegeekstuff.com/2008/08/6-steps-to-secure-your-home-wireless-network/">6 Steps to Secure Your Home Wireless Network</a></li>
+<li><a href="https://www.thegeekstuff.com/2008/08/turbocharge-putty-with-12-powerful-add-ons-software-for-geeks-3/">Turbocharge PuTTY with 12 Powerful Add-Ons</a></li>
+</ul></div>
+		</div><div class="widget widget_text" id="text-19"><p class="widget_title">CATEGORIES</p>			<div class="textwidget"><ul>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/linux/">Linux Tutorials</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/vim-2/">Vim Editor</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/sed/">Sed Scripting</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/awk/">Awk Scripting</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/bash-2/">Bash Shell Scripting</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/nagios-2/">Nagios Monitoring</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/openssh-2/">OpenSSH</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/iptables/">IPTables Firewall</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/apache/">Apache Web Server</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/mysql/">MySQL Database</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/perl/">Perl Programming</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/google/">Google Tutorials</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/ubuntu/">Ubuntu Tutorials</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/postgresql/">PostgreSQL DB</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/hello-world/">Hello World Examples</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/c-programming/">C Programming</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/c-plus-plus/">C++ Programming</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/dell-2/">DELL Server Tutorials</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/oracle/">Oracle Database</a></li>
+<li><a rel="nofollow" href="https://www.thegeekstuff.com/category/vmware/">VMware Tutorials</a></li>
+</ul></div>
+		</div><div class="widget widget_text" id="text-20">			<div class="textwidget"><div id="___person_0" style="position: absolute; width: 450px; left: -10000px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I2_1587306016535" name="I2_1587306016535" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/person.html" data-gapiattached="true"></iframe></div><g:person href="https://plus.google.com/112493711428194838421" data-rel="author" layout="landscape" data-gapiscan="true" data-onload="true" data-gapistub="true"></g:person></div>
+		</div></div>
+</div>
+<div class="footer">
+<div id="footer_widgets" class="columns_3">
+	<div class="one-third sidebar first">
+<div class="widget widget_text" id="text-7"><h4 class="widget_title">About The Geek Stuff</h4>			<div class="textwidget"><br>
+<img class="float" title="Ramesh Natarajan" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/ramesh-small.gif" alt="Linux 101 Hacks Book">
+My name is <strong>Ramesh Natarajan</strong>. I will be posting instruction guides, how-to, troubleshooting tips and tricks on Linux, database, hardware, security and web. My focus is to write articles that will either teach you or help you resolve a problem. Read more about <a href="https://www.thegeekstuff.com/about/">Ramesh Natarajan</a> and the blog.</div>
+		</div>	</div>
+	<div class="one-third sidebar">
+<div class="widget widget_text" id="text-9"><h4 class="widget_title">Contact Us</h4>			<div class="textwidget"><br>
+<strong>Email Me :</strong>
+Use this <a href="https://www.thegeekstuff.com/contact" rel="nofollow">Contact Form</a> to get in touch me with your comments, questions or suggestions about this site. You can also simply drop me a line to say hello!.
+<br><br>
+<a title="Follow us on Google+" href="https://plus.google.com/112493711428194838421/posts">Follow us on Google+</a>
+<br><br>
+<a title="Follow us on Twitter" href="https://twitter.com/thegeekstuff" rel="nofollow">Follow us on Twitter</a>
+<br><br>
+<a href="https://www.facebook.com/thegeekstuff" rel="nofollow">Become a fan on Facebook</a>&nbsp;&nbsp;</div>
+		</div>	</div>
+	<div class="one-third sidebar last">
+<div class="widget widget_text" id="text-8"><h4 class="widget_title">Support Us</h4>			<div class="textwidget"><br>
+Support this blog by purchasing one of my ebooks.
+<br><br>
+<a rel="nofollow" href="https://www.thegeekstuff.com/bash-101-hacks-ebook/">Bash 101 Hacks eBook</a>
+<br><br>
+<a rel="nofollow" href="https://www.thegeekstuff.com/sed-awk-101-hacks-ebook/">Sed and Awk 101 Hacks eBook</a>
+<br><br>
+<a rel="nofollow" href="https://www.thegeekstuff.com/vim-101-hacks-ebook/">Vim 101 Hacks eBook</a>
+<br><br>
+<a rel="nofollow" href="https://www.thegeekstuff.com/nagios-core-ebook/">Nagios Core 3 eBook</a></div>
+		</div>	</div>
+	<div style="clear:both;"></div>
+</div>
+	<p class="attribution">Copyright © 2008–2018 Ramesh Natarajan. All rights reserved  | <a href="https://www.thegeekstuff.com/copyright">Terms of Service</a></p>
+</div>
+</div>
+<script type="text/javascript" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/comment-reply.min.js.gzip"></script>
+<script async="async" type="text/javascript" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/form.js.gzip"></script>
+<script type="text/javascript">
+(function(){
+	var classes = document.getElementsByClassName('menu_control');
+	for (i = 0; i < classes.length; i++) {
+		classes[i].onclick = function() {
+			var menu = this.nextElementSibling;
+			if (/show_menu/.test(menu.className))
+				menu.className = menu.className.replace('show_menu', '').trim();
+			else
+				menu.className += ' show_menu';
+		};
+	}
+})();
+</script>
+<noscript><style type="text/css" scoped>.menu { display: block; }</style></noscript>
+<script type="text/javascript" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/plusone.js" gapi_processed="true"></script>
+
+
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using disk: enhanced
+Content Delivery Network via Amazon Web Services: CloudFront: static.thegeekstuff.com
+
+ Served from: www.thegeekstuff.com @ 2020-04-19 08:20:10 by W3 Total Cache --><iframe scrolling="no" frameborder="0" allowtransparency="true" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/widget_iframe.6787510241df65d128e2b60207ad4c25.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe name="oauth2relay578327369" id="oauth2relay578327369" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./Make Vim as Your Bash-IDE Using bash-support Plugin_files/saved_resource.html"></iframe></body></html>
